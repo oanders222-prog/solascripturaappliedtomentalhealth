@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What the Bible Says About Mental Health</title>
+<style>
+  :root{
+    --navy:#0b2740;
+    --navy-2:#153b5b;
+    --gold:#c7a45a;
+    --paper:#f4efe4;
+    --ink:#17212b;
+    --muted:#59636d;
+    --line:#d7cbb7;
+    --white:#fffdfa;
+    --shadow:0 14px 35px rgba(15,32,47,.18);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family: Georgia, 'Times New Roman', serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 20% 0%, rgba(199,164,90,.10), transparent 28rem),
+      linear-gradient(180deg,#f8f5ee 0%,#eee7da 100%);
+    line-height:1.55;
+  }
+  header{
+    background:linear-gradient(135deg,var(--navy),#071827 72%);
+    color:white;
+    border-bottom:5px solid var(--gold);
+    padding:48px 20px 42px;
+    text-align:center;
+  }
+  header h1{margin:0 auto 8px;max-width:1000px;font-size:clamp(2.2rem,5vw,4.4rem);letter-spacing:.02em;line-height:1.02;text-transform:uppercase}
+  header p{margin:0 auto;max-width:850px;color:#ead8aa;font-size:clamp(1rem,2vw,1.25rem);font-style:italic}
+  main{max-width:1100px;margin:0 auto;padding:34px 18px 70px}
+  .lead,.framework,.verses,.cards-panel{background:rgba(255,253,250,.92);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:18px}
+  .lead{padding:26px 28px;margin-top:-18px}
+  .lead p{margin:0 0 16px;font-size:1.08rem}
+  .lead ol{margin:10px 0 0;padding-left:1.4rem}
+  .lead li{margin:.55rem 0}
+  .section-title{color:var(--navy);font-size:clamp(1.7rem,3vw,2.4rem);margin:0 0 18px;line-height:1.1}
+  .framework{padding:26px;margin-top:28px}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .step{border:2px solid var(--navy-2);border-radius:14px;padding:18px;background:#fff}
+  .step .num{display:inline-grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;font-weight:bold;font-size:1.35rem;margin-bottom:10px}
+  .step h3{margin:0 0 8px;color:var(--navy);font-size:1.3rem}
+  .step p{margin:0;color:#35414b}
+  .verses{padding:26px;margin-top:28px}
+  .verse-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .verse-item{border-left:4px solid var(--gold);background:#fff;padding:14px 15px;border-radius:0 10px 10px 0}
+  .verse-item strong{color:var(--navy)}
+  .verse-item em{display:block;color:var(--muted);margin-top:4px}
+  .cards-panel{padding:26px;margin-top:28px}
+  .deck-area{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;margin-top:12px}
+  .pile-wrap{text-align:center}
+  .pile-label{font-weight:bold;color:var(--navy);margin-bottom:10px;text-transform:uppercase;letter-spacing:.08em}
+  .pile{
+    min-height:365px;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    position:relative;
+    padding-top:6px;
+  }
+  .card{
+    width:min(330px,86vw);
+    height:340px;
+    perspective:1200px;
+    cursor:pointer;
+    position:absolute;
+    top:0;
+    user-select:none;
+  }
+  .card::before,.card::after{
+    content:"";position:absolute;inset:0;border-radius:18px;background:#e7dfcf;border:1px solid #bba98c;z-index:-2;
+  }
+  .card::before{transform:translate(8px,8px)}
+  .card::after{transform:translate(15px,15px);z-index:-3}
+  .card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+  .card.flipped .card-inner{transform:rotateY(180deg)}
+  .card-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;overflow:auto;box-shadow:0 12px 26px rgba(0,0,0,.18);border:2px solid var(--gold)}
+  .card-front{display:flex;align-items:center;justify-content:center;flex-direction:column;background:
+      linear-gradient(145deg,rgba(199,164,90,.17),transparent 45%),
+      linear-gradient(135deg,var(--navy),#061827);color:white;padding:24px}
+  .card-front .cross{font-size:4rem;line-height:1;color:var(--gold);margin-bottom:14px}
+  .card-front .front-title{font-size:1.45rem;letter-spacing:.06em;text-transform:uppercase}
+  .card-front .front-sub{margin-top:8px;color:#e8d9b4;font-style:italic}
+  .card-back{transform:rotateY(180deg);background:var(--white);padding:24px;text-align:left}
+  .card-back .citation{color:var(--navy);font-size:1.35rem;font-weight:bold;margin-bottom:12px}
+  .card-back .text{font-size:1.06rem;white-space:pre-line}
+  .card-back .category{margin-top:16px;color:var(--muted);font-size:.9rem;font-style:italic;border-top:1px solid var(--line);padding-top:10px}
+  .read-card{position:relative;cursor:pointer}
+  .read-card::before,.read-card::after{display:none}
+  .controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+  button{border:0;border-radius:999px;padding:12px 20px;font:700 1rem/1.1 Georgia,'Times New Roman',serif;cursor:pointer}
+  .shuffle{background:var(--gold);color:#132232}
+  .shuffle:hover{filter:brightness(.96)}
+  .count{display:inline-flex;align-items:center;background:#e7edf2;color:var(--navy);padding:10px 15px;border-radius:999px;font-weight:bold}
+  .instruction{text-align:center;margin:22px 0 0;font-size:1.15rem;font-weight:bold;color:var(--navy);font-style:italic}
+  .note{margin-top:16px;color:var(--muted);font-size:.95rem;text-align:center}
+  footer{text-align:center;color:#6a665e;padding:28px 18px 40px;font-size:.9rem}
+  @media(max-width:820px){.steps,.verse-grid,.deck-area{grid-template-columns:1fr}.deck-area{gap:20px}.pile{min-height:360px}.lead,.framework,.verses,.cards-panel{padding:20px}.card{width:min(320px,88vw)}}
+</style>
+</head>
+<body>
+<header>
+  <h1>What the Bible Says About Mental Health</h1>
+  <p>Anxiety, fear, guilt, peace, self-control, discipleship, and the love of God</p>
+</header>
+<main>
+  <section class="lead">
+    <h2 class="section-title">A Biblical Way to Think About the Mental Health Crisis</h2>
+    <p>We are currently in a mental health crisis, with the numbers going up and up. Many college students report anxiety and depression. The Bible speaks to this problem—not by pretending suffering is simple, but by teaching us what is wrong with the world, what is wrong in us, and where peace is found.</p>
+    <ol type="A">
+      <li><strong>We are born into a fallen world under the curse of God.</strong> Things are not right. The world contains suffering, loss, disappointment, disease, conflict, and death.</li>
+      <li><strong>Our own hearts are in rebellion against God.</strong> We minimize our own sin while fretting about why the world is not as we want it to be. Scripture teaches us to examine our own hearts, confess sin, and seek forgiveness.</li>
+      <li><strong>The Bible teaches self-control and self-mastery.</strong> We are not to be tossed about by every feeling, fear, or doubt that comes along. Feelings are real, but they are not our master. Our minds and desires are to be formed by the truth of God.</li>
+      <li><strong>To grow in this, we must be disciples of Christ.</strong> We should expect a daily struggle throughout our lives. We can rejoice when we reach a peak, while knowing there is another climb ahead. Christian maturity is not the absence of struggle; it is learning to struggle faithfully.</li>
+      <li><strong>God disciplines those he loves.</strong> The very fact that there is a spiritual battle within the Christian is evidence of God’s redemptive work in our lives. He does not abandon his children. He trains, corrects, strengthens, and loves them.</li>
+    </ol>
+  </section>
+
+  <section class="framework">
+    <h2 class="section-title">The Biblical Movement</h2>
+    <div class="steps">
+      <article class="step"><span class="num">1</span><h3>Sin Produces Unrest</h3><p>Scripture shows that rebellion, estrangement from God, and guilt produce turmoil, anguish, and a lack of peace.</p></article>
+      <article class="step"><span class="num">2</span><h3>Sin Produces Fear and a Guilty Conscience</h3><p>Sin hides, accuses, troubles the heart, and makes us afraid. A conscience at war with God cannot create lasting peace for itself.</p></article>
+      <article class="step"><span class="num">3</span><h3>Repentance, Forgiveness, and Trust in God Restore Peace</h3><p>The biblical answer is not mere self-soothing. It is repentance, forgiveness, faith, communion with Christ, and trust in God’s providence.</p></article>
+    </div>
+  </section>
+
+  <section class="verses">
+    <h2 class="section-title">Key Passages</h2>
+    <div id="verseList" class="verse-grid"></div>
+  </section>
+
+  <section class="cards-panel">
+    <h2 class="section-title">Scripture Reflection Deck</h2>
+    <div class="deck-area">
+      <div class="pile-wrap">
+        <div class="pile-label">To Read</div>
+        <div id="deckPile" class="pile"></div>
+      </div>
+      <div class="pile-wrap">
+        <div class="pile-label">Read</div>
+        <div id="readPile" class="pile"></div>
+      </div>
+    </div>
+    <div class="controls">
+      <button id="shuffleBtn" class="shuffle">Shuffle</button>
+      <div id="counter" class="count"></div>
+    </div>
+    <p class="instruction">Read each card, reflect on it, pray on it.</p>
+    <p class="note">Click the top card to reveal the passage. Click it again to move it to the “Read” pile. Shuffle at any time to begin again.</p>
+  </section>
+</main>
+<footer>Scripture quotations are from the King James Version.</footer>
+
+<script>
+const verses = [
+  {cat:'1. Sin Produces Unrest', c:'Genesis 3:8–10', t:'And they heard the voice of the LORD God walking in the garden in the cool of the day: and Adam and his wife hid themselves from the presence of the LORD God amongst the trees of the garden.\nAnd the LORD God called unto Adam, and said unto him, Where art thou?\nAnd he said, I heard thy voice in the garden, and I was afraid, because I was naked; and I hid myself.'},
+  {cat:'1. Sin Produces Unrest', c:'Genesis 4:6–7', t:'And the LORD said unto Cain, Why art thou wroth? and why is thy countenance fallen?\nIf thou doest well, shalt thou not be accepted? and if thou doest not well, sin lieth at the door.'},
+  {cat:'1. Sin Produces Unrest', c:'Leviticus 26:36–37', t:'And upon them that are left alive of you I will send a faintness into their hearts in the lands of their enemies; and the sound of a shaken leaf shall chase them; and they shall flee, as fleeing from a sword; and they shall fall when none pursueth.\nAnd they shall fall one upon another, as it were before a sword, when none pursueth.'},
+  {cat:'1. Sin Produces Unrest', c:'Deuteronomy 28:65–67', t:'And among these nations shalt thou find no ease, neither shall the sole of thy foot have rest: but the LORD shall give thee there a trembling heart, and failing of eyes, and sorrow of mind: And thy life shall hang in doubt before thee; and thou shalt fear day and night, and shalt have none assurance of thy life.'},
+  {cat:'1. Sin Produces Unrest', c:'Job 15:20–24', t:'The wicked man travaileth with pain all his days... A dreadful sound is in his ears... Trouble and anguish shall make him afraid.'},
+  {cat:'1. Sin Produces Unrest', c:'Psalm 31:9–10', t:'Have mercy upon me, O LORD, for I am in trouble: mine eye is consumed with grief, yea, my soul and my belly. For my life is spent with grief, and my years with sighing: my strength faileth because of mine iniquity, and my bones are consumed.'},
+  {cat:'2. Sin Produces Fear and a Guilty Conscience', c:'Psalm 32:3–4', t:'When I kept silence, my bones waxed old through my roaring all the day long. For day and night thy hand was heavy upon me: my moisture is turned into the drought of summer.'},
+  {cat:'1. Sin Produces Unrest', c:'Psalm 38:3–8', t:'There is no soundness in my flesh because of thine anger; neither is there any rest in my bones because of my sin. For mine iniquities are gone over mine head: as an heavy burden they are too heavy for me... I am troubled; I am bowed down greatly; I go mourning all the day long... I am feeble and sore broken: I have roared by reason of the disquietness of my heart.'},
+  {cat:'2. Sin Produces Fear and a Guilty Conscience', c:'Psalm 38:17–18', t:'For I am ready to halt, and my sorrow is continually before me. For I will declare mine iniquity; I will be sorry for my sin.'},
+  {cat:'2. Sin Produces Fear and a Guilty Conscience', c:'Psalm 51:3', t:'For I acknowledge my transgressions: and my sin is ever before me.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Psalm 51:8–12', t:'Make me to hear joy and gladness; that the bones which thou hast broken may rejoice. Hide thy face from my sins, and blot out all mine iniquities. Create in me a clean heart, O God; and renew a right spirit within me... Restore unto me the joy of thy salvation; and uphold me with thy free spirit.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Proverbs 3:21–26', t:'Then shalt thou walk in thy way safely... When thou liest down, thou shalt not be afraid... Be not afraid of sudden fear... For the LORD shall be thy confidence.'},
+  {cat:'2. Sin Produces Fear and a Guilty Conscience', c:'Proverbs 10:24', t:'The fear of the wicked, it shall come upon him: but the desire of the righteous shall be granted.'},
+  {cat:'1. Sin Produces Unrest', c:'Proverbs 12:25', t:'Heaviness in the heart of man maketh it stoop: but a good word maketh it glad.'},
+  {cat:'1. Sin Produces Unrest', c:'Proverbs 13:15', t:'Good understanding giveth favour: but the way of transgressors is hard.'},
+  {cat:'1. Sin Produces Unrest', c:'Proverbs 14:14', t:'The backslider in heart shall be filled with his own ways: and a good man shall be satisfied from himself.'},
+  {cat:'2. Sin Produces Fear and a Guilty Conscience', c:'Proverbs 28:1', t:'The wicked flee when no man pursueth: but the righteous are bold as a lion.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Proverbs 28:13', t:'He that covereth his sins shall not prosper: but whoso confesseth and forsaketh them shall have mercy.'},
+  {cat:'1. Sin Produces Unrest', c:'Isaiah 48:22', t:'There is no peace, saith the LORD, unto the wicked.'},
+  {cat:'1. Sin Produces Unrest', c:'Isaiah 57:20–21', t:'But the wicked are like the troubled sea, when it cannot rest, whose waters cast up mire and dirt. There is no peace, saith my God, to the wicked.'},
+  {cat:'1. Sin Produces Unrest', c:'Isaiah 59:2', t:'But your iniquities have separated between you and your God, and your sins have hid his face from you, that he will not hear.'},
+  {cat:'1. Sin Produces Unrest', c:'Jeremiah 2:19', t:'Thine own wickedness shall correct thee, and thy backslidings shall reprove thee: know therefore and see that it is an evil thing and bitter, that thou hast forsaken the LORD thy God.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Jeremiah 6:16', t:'Thus saith the LORD, Stand ye in the ways, and see, and ask for the old paths, where is the good way, and walk therein, and ye shall find rest for your souls. But they said, We will not walk therein.'},
+  {cat:'1. Sin Produces Unrest', c:'Lamentations 1:20', t:'Behold, O LORD; for I am in distress: my bowels are troubled; mine heart is turned within me; for I have grievously rebelled.'},
+  {cat:'1. Sin Produces Unrest', c:'Hosea 8:7', t:'For they have sown the wind, and they shall reap the whirlwind.'},
+  {cat:'1. Sin Produces Unrest', c:'Romans 2:8–9', t:'But unto them that are contentious, and do not obey the truth, but obey unrighteousness, indignation and wrath, tribulation and anguish, upon every soul of man that doeth evil.'},
+  {cat:'1. Sin Produces Unrest', c:'Romans 6:21', t:'What fruit had ye then in those things whereof ye are now ashamed? for the end of those things is death.'},
+  {cat:'1. Sin Produces Unrest', c:'Romans 6:23', t:'For the wages of sin is death; but the gift of God is eternal life through Jesus Christ our Lord.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Romans 8:6', t:'For to be carnally minded is death; but to be spiritually minded is life and peace.'},
+  {cat:'1. Sin Produces Unrest', c:'Galatians 6:7–8', t:'Be not deceived; God is not mocked: for whatsoever a man soweth, that shall he also reap. For he that soweth to his flesh shall of the flesh reap corruption.'},
+  {cat:'1. Sin Produces Unrest', c:'James 1:14–15', t:'But every man is tempted, when he is drawn away of his own lust, and enticed. Then when lust hath conceived, it bringeth forth sin: and sin, when it is finished, bringeth forth death.'},
+  {cat:'1. Sin Produces Unrest', c:'James 3:16', t:'For where envying and strife is, there is confusion and every evil work.'},
+  {cat:'1. Sin Produces Unrest', c:'James 4:1', t:'From whence come wars and fightings among you? come they not hence, even of your lusts that war in your members?'},
+  {cat:'2. Sin Produces Fear and a Guilty Conscience', c:'1 John 3:20–21', t:'For if our heart condemn us, God is greater than our heart, and knoweth all things. Beloved, if our heart condemn us not, then have we confidence toward God.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'1 John 4:18', t:'There is no fear in love; but perfect love casteth out fear: because fear hath torment.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Philippians 4:6–7', t:'Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Isaiah 26:3–4', t:'Thou wilt keep him in perfect peace, whose mind is stayed on thee: because he trusteth in thee. Trust ye in the LORD for ever: for in the LORD JEHOVAH is everlasting strength.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'John 14:27', t:'Peace I leave with you, my peace I give unto you: not as the world giveth, give I unto you. Let not your heart be troubled, neither let it be afraid.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'John 16:33', t:'These things I have spoken unto you, that in me ye might have peace. In the world ye shall have tribulation: but be of good cheer; I have overcome the world.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Matthew 6:31–34', t:'Therefore take no thought, saying, What shall we eat? or, What shall we drink?... for your heavenly Father knoweth that ye have need of all these things. But seek ye first the kingdom of God, and his righteousness... Take therefore no thought for the morrow.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Matthew 11:28–30', t:'Come unto me, all ye that labour and are heavy laden, and I will give you rest... and ye shall find rest unto your souls. For my yoke is easy, and my burden is light.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'1 Peter 5:6–7', t:'Humble yourselves therefore under the mighty hand of God... Casting all your care upon him; for he careth for you.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Psalm 55:22', t:'Cast thy burden upon the LORD, and he shall sustain thee: he shall never suffer the righteous to be moved.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Psalm 56:3–4', t:'What time I am afraid, I will trust in thee. In God I will praise his word, in God I have put my trust; I will not fear what flesh can do unto me.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Psalm 62:5–8', t:'My soul, wait thou only upon God; for my expectation is from him... Trust in him at all times; ye people, pour out your heart before him: God is a refuge for us.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Psalm 112:7–8', t:'He shall not be afraid of evil tidings: his heart is fixed, trusting in the LORD. His heart is established, he shall not be afraid.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Proverbs 3:5–6', t:'Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Isaiah 41:10', t:'Fear thou not; for I am with thee: be not dismayed; for I am thy God: I will strengthen thee; yea, I will help thee.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Romans 5:1', t:'Therefore being justified by faith, we have peace with God through our Lord Jesus Christ.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Romans 8:31–32', t:'What shall we then say to these things? If God be for us, who can be against us? He that spared not his own Son... how shall he not with him also freely give us all things?'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Romans 8:38–39', t:'For I am persuaded, that neither death, nor life... nor any other creature, shall be able to separate us from the love of God, which is in Christ Jesus our Lord.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Colossians 3:15', t:'And let the peace of God rule in your hearts, to the which also ye are called in one body; and be ye thankful.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'2 Timothy 1:7', t:'For God hath not given us the spirit of fear; but of power, and of love, and of a sound mind.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Hebrews 13:5–6', t:'For he hath said, I will never leave thee, nor forsake thee. So that we may boldly say, The Lord is my helper, and I will not fear what man shall do unto me.'},
+  {cat:'3. Repentance, Forgiveness, and Trust Restore Peace', c:'Psalm 4:8', t:'I will both lay me down in peace, and sleep: for thou, LORD, only makest me dwell in safety.'}
+];
+
+const list = document.getElementById('verseList');
+verses.forEach(v=>{
+  const d=document.createElement('div'); d.className='verse-item';
+  d.innerHTML=`<strong>${v.c}</strong><em>${v.cat}</em>`;
+  list.appendChild(d);
+});
+
+let deck=[]; let read=[]; let revealed=false;
+const deckPile=document.getElementById('deckPile');
+const readPile=document.getElementById('readPile');
+const counter=document.getElementById('counter');
+
+function shuffleArray(a){
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+function makeCard(v, isRead=false){
+  const card=document.createElement('div');
+  card.className='card'+(isRead?' flipped read-card':'');
+  card.innerHTML=`<div class="card-inner">
+    <div class="card-face card-front"><div class="cross">✝</div><div class="front-title">Scripture</div><div class="front-sub">Click to reveal</div></div>
+    <div class="card-face card-back"><div class="citation">${v.c}</div><div class="text">${v.t}</div><div class="category">${v.cat}</div></div>
+  </div>`;
+  return card;
+}
+function render(){
+  deckPile.innerHTML=''; readPile.innerHTML='';
+  if(deck.length){
+    const top=makeCard(deck[0],false);
+    if(revealed) top.classList.add('flipped');
+    top.addEventListener('click',()=>{
+      if(!revealed){revealed=true;top.classList.add('flipped');}
+      else{read.unshift(deck.shift());revealed=false;render();}
+    });
+    deckPile.appendChild(top);
+  } else {
+    deckPile.innerHTML='<div style="margin-top:130px;color:#68737d;font-style:italic">All cards read.</div>';
+  }
+  if(read.length){
+    const r=makeCard(read[0],true); readPile.appendChild(r);
+  } else {
+    readPile.innerHTML='<div style="margin-top:130px;color:#68737d;font-style:italic">Read cards will appear here.</div>';
+  }
+  counter.textContent=`${read.length} read • ${deck.length} remaining`;
+}
+function reset(){deck=shuffleArray([...verses]);read=[];revealed=false;render();}
+document.getElementById('shuffleBtn').addEventListener('click',reset);
+reset();
+</script>
+</body>
+</html>
